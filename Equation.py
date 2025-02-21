@@ -1,24 +1,51 @@
 import matplotlib.pyplot as plt
 import numpy as np
-
-# Данные
-x = np.linspace(-2, 2, 100)  # 100 точек от -10 до 10
-y1 = x**3-x+1
-y2 = x**3-x**2-9*x+9
-# Построение графиков
-plt.plot(x, y1, label="y1", color="blue")
-plt.plot(x, y2, label="y2", color="green")
-# Настройка
-plt.title("Графики sin(x) и cos(x)")
-plt.xlabel("Значения X")
-plt.ylabel("Значения Y")
-plt.legend()
-plt.grid(True)  # Сетка на графике
-plt.show()
-def y1(x)
+# Data
+e = 2.718281828
+x = np.linspace(-2, 2, 100)  # 1000 scatters in [-2;2]
+def f1(x):
     return x**3-x+1
-def soluion(f, a, b):
-    c = (a+b) / 2
-    x = f(y)
-
-soluion(y1, 1,3)
+def f2(x):
+    return x**3-x**2-9*x+9
+def f3(x):
+    return x**2-e**x
+def f4(x):
+    return 5*x-6*np.log(x)-7
+def f5(x):
+    return np.cos(x)+2*x-3
+def f1(x):
+    return x**3-x+1
+def f2(x):
+    return x**3-x**2-9*x+9
+def f3(x):
+    return x**2-e**x
+def f4(x):
+    return 5*x-6*np.log(x)-7
+def f5(x):
+    return np.cos(x)+2*x-3
+def soluion(f, b1, b2):
+    eps = 10**(-2)
+    while b2-b1>2*eps:
+        c = (b1+b2) / 2
+        if f(b1)*f(c)<=0:
+            b2=c
+        else: b1=c
+    return c
+print("first",soluion(f1,-2,-1))
+print("second",soluion(f2,0.5,1.5))
+print("third",soluion(f3,-2,-1))
+print("fourth",soluion(f4,0,0.5))
+print("fifth",soluion(f5,0,1.8))
+# Create graph
+plt.plot(x, f1(x), label="y1")
+plt.plot(x, f2(x), label="y2")
+plt.plot(x, f3(x), label="y3")
+plt.plot(x, f4(x), label="y4")
+plt.plot(x, f5(x), label="y5")
+# Setings
+plt.title("Graphs")
+plt.xlabel("X")
+plt.ylabel("Y")
+plt.legend()
+plt.grid(True)  # grid graphics
+plt.show()
